@@ -18,6 +18,7 @@ final class TabBarController: UITabBarController {
     }
     
     private func setupTabBarController() {
+        self.tabBar.backgroundColor = .white
         viewControllers = [feedNavigationController, profileNavigationController]
         feedNavigationController.tabBarItem.title = "Feed"
         feedNavigationController.tabBarItem.image = TabBarPictures.feedImage

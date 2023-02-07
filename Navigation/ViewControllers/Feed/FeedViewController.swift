@@ -24,7 +24,6 @@ final class FeedViewController: UIViewController {
     }
     
     @objc private func postButtonPressed() {
-        print(#function)
         navigationController?.pushViewController(PostViewController(), animated: true)
        }
     

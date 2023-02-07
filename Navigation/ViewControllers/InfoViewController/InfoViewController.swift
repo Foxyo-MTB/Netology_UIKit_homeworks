@@ -37,8 +37,6 @@ final class InfoViewController: UIViewController {
         alert.addAction(cancelAction)
         alert.addAction(firstAction)
         present(alert, animated: true)
-        
-        
     }
 
 }

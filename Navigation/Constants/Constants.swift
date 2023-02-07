@@ -13,3 +13,9 @@ enum TabBarPictures {
     static let feedImage = UIImage(systemName: "paperplane")
     
 }
+
+enum AvatarPhotos {
+    
+    static let profilePhoto = UIImage(named: "Cockatiel")
+    
+}
