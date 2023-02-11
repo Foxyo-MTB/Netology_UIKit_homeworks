@@ -6,8 +6,15 @@
 //
 
 import UIKit
+import SnapKit
 
 final class ProfileHeaderView: UIView {
+    
+    private let backgroundView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemGray4
+        return view
+    }()
     
     private let profilePhoto: UIImageView = {
         let imageView = UIImageView()
@@ -85,22 +92,29 @@ extension ProfileHeaderView {
     
     private func setupView() {
         
-        backgroundColor = .systemGray4   // Сорян, но .lightGray меня угнетал
+        backgroundColor = .white//.systemGray4   // Сорян, но .lightGray меня угнетал
         
-        addSubview(profilePhoto)
+        addSubview(backgroundView)
+        backgroundView.snp.makeConstraints { make in
+            make.top.equalTo(self.safeAreaLayoutGuide.snp.top)
+            //make.top.equalToSuperview()
+            make.leading.trailing.bottom.equalToSuperview()
+        }
+        
+        backgroundView.addSubview(profilePhoto)
         profilePhoto.snp.makeConstraints { make in
             make.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(16)
             make.left.equalTo(self.safeAreaLayoutGuide.snp.left).offset(16)
             make.height.width.equalTo(100)
         }
         
-        addSubview(nameLabel)
+        backgroundView.addSubview(nameLabel)
         nameLabel.snp.makeConstraints { make in
             make.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(27)
             make.left.equalTo(profilePhoto.snp.right).offset(16)
         }
         
-        addSubview(statusButton)
+        backgroundView.addSubview(statusButton)
         statusButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.width.equalToSuperview().offset(-32)
@@ -108,14 +122,14 @@ extension ProfileHeaderView {
             make.height.equalTo(50)
         }
         
-        addSubview(statusLabel)
+        backgroundView.addSubview(statusLabel)
         statusLabel.snp.makeConstraints { make in
             make.bottom.equalTo(statusButton.snp.top).offset(-50)
             make.left.equalTo(nameLabel.snp.left)
             make.right.equalToSuperview().offset(-16)
         }
         
-        addSubview(statusTextField)
+        backgroundView.addSubview(statusTextField)
         statusTextField.snp.makeConstraints { make in
             make.top.equalTo(statusLabel.snp.bottom).offset(5)
             make.left.equalTo(statusLabel.snp.left)

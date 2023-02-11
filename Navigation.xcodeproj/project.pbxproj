@@ -100,8 +100,8 @@
 			isa = PBXGroup;
 			children = (
 				74411D0E298AE0A80019FA7F /* TabBarViewController */,
-				74999F9D298AEF0F00D060CF /* InfoViewController */,
 				7441FA6F2989814C00E96748 /* Post */,
+				74999F9D298AEF0F00D060CF /* InfoViewController */,
 				746A5FDD29897338002716AB /* Profile */,
 				746A5FDC29897331002716AB /* Feed */,
 			);
