@@ -14,7 +14,8 @@ final class FeedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        baseView.providePostButtonToVC().addTarget(self, action: #selector(postButtonPressed), for: .touchUpInside)
+        baseView.buttonsPassesToVC().first?.addTarget(self, action: #selector(postButtonPressed), for: .touchUpInside)
+        baseView.buttonsPassesToVC().last?.addTarget(self, action: #selector(postButtonPressed), for: .touchUpInside)
     }
     
     override func viewWillLayoutSubviews() {
@@ -25,10 +26,10 @@ final class FeedViewController: UIViewController {
     
     @objc private func postButtonPressed() {
         navigationController?.pushViewController(PostViewController(), animated: true)
-       }
+    }
     
     func providePostObject() -> Post {
         postObject
     }
-
+    
 }

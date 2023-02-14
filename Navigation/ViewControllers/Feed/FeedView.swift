@@ -9,18 +9,29 @@ import UIKit
 import SnapKit
 
 final class FeedView: UIView {
-
-    private let postButton: UIButton = {
+    
+    private let postButtonOne: UIButton = {
         let button = UIButton()
-        button.setTitle("Go to post", for: .normal)
+        button.setTitle("Go to post first", for: .normal)
         button.backgroundColor = .systemBlue
         button.layer.cornerRadius = 10
         return button
     }()
     
-    func providePostButtonToVC() -> UIButton {
-        postButton
-    }
+    private let postButtonTwo: UIButton = {
+        let button = UIButton()
+        button.setTitle("Go to post second", for: .normal)
+        button.backgroundColor = .systemMint
+        button.layer.cornerRadius = 10
+        return button
+    }()
+    
+    private lazy var postStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [postButtonOne, postButtonTwo])
+        stackView.axis = .vertical
+        stackView.spacing = 10
+        return stackView
+    }()
     
     init() {
         super.init(frame: .zero)
@@ -30,8 +41,10 @@ final class FeedView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
- 
-
+    
+    func buttonsPassesToVC() -> [UIButton] {
+        [postButtonOne,postButtonTwo]
+    }
 }
 
 //MARK: - Constraints extension
@@ -41,13 +54,20 @@ extension FeedView {
     private func setFeedView() {
         
         self.backgroundColor = .white
-        addSubview(postButton)
-        postButton.snp.makeConstraints { make in
-            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).offset(-50)
-            make.centerX.equalToSuperview()
-            make.width.equalTo(100)
+        
+        addSubview(postStackView)
+        postStackView.snp.makeConstraints { make in
+            make.centerX.centerY.equalToSuperview()
+        }
+        
+        postButtonOne.snp.makeConstraints { make in
+            make.width.equalToSuperview()
             make.height.equalTo(50)
         }
         
+        postButtonTwo.snp.makeConstraints { make in
+            make.width.equalToSuperview()
+            make.height.equalTo(50)
+        }
     }
 }

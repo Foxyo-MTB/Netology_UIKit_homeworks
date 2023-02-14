@@ -23,6 +23,7 @@ final class ProfileHeaderView: UIView {
         imageView.layer.borderWidth = 3
         imageView.layer.borderColor = UIColor.white.cgColor
         imageView.layer.cornerRadius = 50
+        imageView.contentMode = .scaleAspectFill
         return imageView
     }()
     
@@ -65,6 +66,12 @@ final class ProfileHeaderView: UIView {
         return textField
     }()
     
+    private let newButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Change title?", for: .normal)  // Это второй пункт дз, вот я тут что-то не понял, че за кнопка нужна.
+        return button
+    }()
+    
     func statusButtonPassesToVC() -> UIButton {
         statusButton
     }
@@ -92,13 +99,13 @@ extension ProfileHeaderView {
     
     private func setupView() {
         
-        backgroundColor = .white//.systemGray4   // Сорян, но .lightGray меня угнетал
+        backgroundColor = .white
         
         addSubview(backgroundView)
         backgroundView.snp.makeConstraints { make in
             make.top.equalTo(self.safeAreaLayoutGuide.snp.top)
-            //make.top.equalToSuperview()
-            make.leading.trailing.bottom.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(220)
         }
         
         backgroundView.addSubview(profilePhoto)
@@ -135,6 +142,12 @@ extension ProfileHeaderView {
             make.left.equalTo(statusLabel.snp.left)
             make.height.equalTo(40)
             make.right.equalToSuperview().offset(-16)
+        }
+        
+        addSubview(newButton)                       
+        newButton.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom)
         }
     }
     
