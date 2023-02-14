@@ -73,9 +73,8 @@ final class ProfileHeaderView: UIView {
     
     private let newButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Change title?", for: .normal)  // Это второй пункт дз, вот я тут что-то не понял, че за кнопка нужна.
+        button.setTitle("Change title?", for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = .blue
         return button
     }()
     
