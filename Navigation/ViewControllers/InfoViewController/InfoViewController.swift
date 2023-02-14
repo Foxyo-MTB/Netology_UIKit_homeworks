@@ -13,15 +13,11 @@ final class InfoViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        baseView.provideInfoButton().addTarget(self, action: #selector(pressButtonPressed), for: .touchUpInside)
-    }
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
         baseView.frame = view.bounds
         view.addSubview(baseView)
+        baseView.provideInfoButton().addTarget(self, action: #selector(pressButtonPressed), for: .touchUpInside)
     }
-    
+
     @objc private func pressButtonPressed() {
         
         let secondAlert = UIAlertController(title: "А вот не хочу я печатать в консоль, сюда хочу печатать!", message: "", preferredStyle: .alert)

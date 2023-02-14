@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SnapKit
 
 final class InfoView: UIView {
     
@@ -40,13 +39,11 @@ extension InfoView {
     private func setupView() {
         
         addSubview(pressButton)
-        pressButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(200)
-            make.height.equalTo(50)
-            make.width.equalTo(150)
-            make.centerX.equalToSuperview()
-        }
-        
+        NSLayoutConstraint.activate([
+            pressButton.topAnchor.constraint(equalTo: topAnchor, constant: 200),
+            pressButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+            pressButton.heightAnchor.constraint(equalToConstant: 50),
+            pressButton.widthAnchor.constraint(equalToConstant: 150)
+        ])
     }
-    
 }

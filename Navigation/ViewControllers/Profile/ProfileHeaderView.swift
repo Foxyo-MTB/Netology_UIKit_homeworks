@@ -6,13 +6,13 @@
 //
 
 import UIKit
-import SnapKit
 
 final class ProfileHeaderView: UIView {
     
     private let backgroundView: UIView = {
         let view = UIView()
         view.backgroundColor = .systemGray4
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
@@ -24,6 +24,7 @@ final class ProfileHeaderView: UIView {
         imageView.layer.borderColor = UIColor.white.cgColor
         imageView.layer.cornerRadius = 50
         imageView.contentMode = .scaleAspectFill
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
@@ -32,6 +33,7 @@ final class ProfileHeaderView: UIView {
         label.text = "Cool parrot"
         label.font = .systemFont(ofSize: 18, weight: .bold)
         label.textColor = .black
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -45,12 +47,14 @@ final class ProfileHeaderView: UIView {
         button.layer.shadowRadius = 4
         button.layer.shadowOpacity = 0.7
         button.layer.shadowOffset = CGSize(width: 4, height: 4)
+        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
     private let statusLabel: UILabel = {
         let label = UILabel()
         label.text = "Тут установлен статус"
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -63,12 +67,15 @@ final class ProfileHeaderView: UIView {
         textField.layer.borderColor = UIColor.black.cgColor
         textField.font = .systemFont(ofSize: 15, weight: .regular)
         textField.textColor = .black
+        textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
     
     private let newButton: UIButton = {
         let button = UIButton()
         button.setTitle("Change title?", for: .normal)  // Это второй пункт дз, вот я тут что-то не понял, че за кнопка нужна.
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor = .blue
         return button
     }()
     
@@ -102,53 +109,46 @@ extension ProfileHeaderView {
         backgroundColor = .white
         
         addSubview(backgroundView)
-        backgroundView.snp.makeConstraints { make in
-            make.top.equalTo(self.safeAreaLayoutGuide.snp.top)
-            make.leading.trailing.equalToSuperview()
-            make.height.equalTo(220)
-        }
-        
+        addSubview(newButton)
         backgroundView.addSubview(profilePhoto)
-        profilePhoto.snp.makeConstraints { make in
-            make.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(16)
-            make.left.equalTo(self.safeAreaLayoutGuide.snp.left).offset(16)
-            make.height.width.equalTo(100)
-        }
-        
         backgroundView.addSubview(nameLabel)
-        nameLabel.snp.makeConstraints { make in
-            make.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(27)
-            make.left.equalTo(profilePhoto.snp.right).offset(16)
-        }
-        
         backgroundView.addSubview(statusButton)
-        statusButton.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.width.equalToSuperview().offset(-32)
-            make.top.equalTo(profilePhoto.snp.bottom).offset(30)
-            make.height.equalTo(50)
-        }
-        
         backgroundView.addSubview(statusLabel)
-        statusLabel.snp.makeConstraints { make in
-            make.bottom.equalTo(statusButton.snp.top).offset(-50)
-            make.left.equalTo(nameLabel.snp.left)
-            make.right.equalToSuperview().offset(-16)
-        }
-        
         backgroundView.addSubview(statusTextField)
-        statusTextField.snp.makeConstraints { make in
-            make.top.equalTo(statusLabel.snp.bottom).offset(5)
-            make.left.equalTo(statusLabel.snp.left)
-            make.height.equalTo(40)
-            make.right.equalToSuperview().offset(-16)
-        }
         
-        addSubview(newButton)                       
-        newButton.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom)
-        }
+        
+        NSLayoutConstraint.activate([
+            backgroundView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            backgroundView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            backgroundView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            backgroundView.heightAnchor.constraint(equalToConstant: 220),
+            
+            profilePhoto.topAnchor.constraint(equalTo: backgroundView.safeAreaLayoutGuide.topAnchor, constant: 16),
+            profilePhoto.leadingAnchor.constraint(equalTo: backgroundView.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            profilePhoto.heightAnchor.constraint(equalToConstant: 100),
+            profilePhoto.widthAnchor.constraint(equalToConstant: 100),
+            
+            nameLabel.topAnchor.constraint(equalTo: backgroundView.topAnchor, constant: 16),
+            nameLabel.leadingAnchor.constraint(equalTo: profilePhoto.trailingAnchor, constant: 16),
+            
+            statusButton.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor),
+            statusButton.widthAnchor.constraint(equalTo: backgroundView.widthAnchor, constant: -32),
+            statusButton.topAnchor.constraint(equalTo: profilePhoto.bottomAnchor, constant: 30),
+            statusButton.heightAnchor.constraint(equalToConstant: 50),
+            
+            statusLabel.bottomAnchor.constraint(equalTo: statusButton.topAnchor, constant: -50),
+            statusLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
+            statusLabel.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor,constant: -16),
+            
+            
+            statusTextField.topAnchor.constraint(equalTo: statusLabel.bottomAnchor,constant: 5),
+            statusTextField.leadingAnchor.constraint(equalTo: statusLabel.leadingAnchor),
+            statusTextField.heightAnchor.constraint(equalToConstant: 40),
+            statusTextField.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor, constant: -16),
+            
+            newButton.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor),
+            newButton.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor),
+            newButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
+        ])
     }
-    
 }

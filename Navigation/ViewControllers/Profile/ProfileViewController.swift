@@ -13,16 +13,12 @@ final class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        baseView.frame = view.bounds
+        view.addSubview(baseView)
         navigationItem.title = "Profile"
         baseView.statusButtonPassesToVC().addTarget(self, action: #selector(statusButtonPressed), for: .touchUpInside)
     }
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        baseView.frame = view.bounds
-        view.addSubview(baseView)
-    }
-    
+        
     @objc private func statusButtonPressed() {
         baseView.statusLabelPassesToVC().text = baseView.statusTextFieldPassesToVC().text
     }

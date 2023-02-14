@@ -13,16 +13,12 @@ final class PostViewController: UIViewController {
     private let feedVC = FeedViewController()
     override func viewDidLoad() {
         super.viewDidLoad()
+        baseView.frame = view.bounds
+        view.addSubview(baseView)
         navigationItem.title = feedVC.providePostObject().title
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Info", style: .done, target: self, action: #selector(goToInfo))
     }
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        baseView.frame = view.bounds
-        view.addSubview(baseView)
-    }
-    
+        
     @objc private func goToInfo() {
         let vc = InfoViewController()
         present(vc, animated: true)

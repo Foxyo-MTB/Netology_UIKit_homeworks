@@ -14,14 +14,10 @@ final class FeedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        baseView.buttonsPassesToVC().first?.addTarget(self, action: #selector(postButtonPressed), for: .touchUpInside)
-        baseView.buttonsPassesToVC().last?.addTarget(self, action: #selector(postButtonPressed), for: .touchUpInside)
-    }
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
         baseView.frame = view.bounds
         view.addSubview(baseView)
+        baseView.postButtonOne.addTarget(self, action: #selector(postButtonPressed), for: .touchUpInside)
+        baseView.postButtonTwo.addTarget(self, action: #selector(postButtonPressed), for: .touchUpInside)
     }
     
     @objc private func postButtonPressed() {
