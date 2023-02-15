@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 final class InfoView: UIView {
     
@@ -24,14 +25,15 @@ final class InfoView: UIView {
         setupView()
     }
     
+    func pressButtonAddTarget(target: Any?, action: Selector) {
+        pressButton.addTarget(target, action: action, for: .touchUpInside)
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    func provideInfoButton() -> UIButton {
-        pressButton
-    }
-    
+ 
+
 }
 
 extension InfoView {
@@ -39,11 +41,12 @@ extension InfoView {
     private func setupView() {
         
         addSubview(pressButton)
-        NSLayoutConstraint.activate([
-            pressButton.topAnchor.constraint(equalTo: topAnchor, constant: 200),
-            pressButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-            pressButton.heightAnchor.constraint(equalToConstant: 50),
-            pressButton.widthAnchor.constraint(equalToConstant: 150)
-        ])
+        pressButton.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(200)
+            make.height.equalTo(50)
+            make.width.equalTo(150)
+            make.centerX.equalToSuperview()
+        }
+        
     }
 }

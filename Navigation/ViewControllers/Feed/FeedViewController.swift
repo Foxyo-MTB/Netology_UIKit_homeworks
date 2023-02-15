@@ -9,18 +9,20 @@ import UIKit
 
 final class FeedViewController: UIViewController {
     
-    private var baseView = FeedView()
+    private lazy var baseView = FeedView(target: self) {
+        self.addButtonPressed()
+    }
+    
     private let postObject = Post(title: "Here's the title!")
     
     override func viewDidLoad() {
         super.viewDidLoad()
         baseView.frame = view.bounds
         view.addSubview(baseView)
-        baseView.postButtonOne.addTarget(self, action: #selector(postButtonPressed), for: .touchUpInside)
-        baseView.postButtonTwo.addTarget(self, action: #selector(postButtonPressed), for: .touchUpInside)
+        baseView.pushVCAddTarget(target: self, action: #selector(addButtonPressed))
     }
     
-    @objc private func postButtonPressed() {
+    @objc private func addButtonPressed() {
         navigationController?.pushViewController(PostViewController(), animated: true)
     }
     
@@ -29,3 +31,4 @@ final class FeedViewController: UIViewController {
     }
     
 }
+

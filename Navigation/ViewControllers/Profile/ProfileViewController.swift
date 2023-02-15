@@ -16,10 +16,11 @@ final class ProfileViewController: UIViewController {
         baseView.frame = view.bounds
         view.addSubview(baseView)
         navigationItem.title = "Profile"
-        baseView.statusButtonPassesToVC().addTarget(self, action: #selector(statusButtonPressed), for: .touchUpInside)
+        navigationController?.navigationBar.isHidden = false
+        baseView.statusButtonAddTarget(target: self, action: #selector(statusButtonPressed))
     }
         
     @objc private func statusButtonPressed() {
-        baseView.statusLabelPassesToVC().text = baseView.statusTextFieldPassesToVC().text
+        baseView.statusLabel.text = baseView.statusTextField.text
     }
 }

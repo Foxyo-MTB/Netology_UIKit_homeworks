@@ -6,20 +6,21 @@
 //
 
 import UIKit
-//import SnapKit
 
 final class FeedView: UIView {
     
-    private(set) var postButtonOne: UIButton = {
+    // Если же переносить .addTarget в замыкание, то такой вариант я придумал, но не додумал =)
+    private let postButtonOne: UIButton = {
         let button = UIButton()
         button.setTitle("Go to post first", for: .normal)
         button.backgroundColor = .systemBlue
         button.layer.cornerRadius = 10
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(FeedView.self, action: #selector(getter: actionButton), for: .touchUpInside) // Вот тут я думал-думал, как исправить замечание Алексея Павлова из пердыдущего дз, чтобы .addTarget был в замыкании и не придумал, подскажите, пожалуйста, как правильно сделать? Не понятно, как передавать navigation controller. Придумал только способ, как в postButtonTwo()
         return button
     }()
     
-    private(set) var postButtonTwo: UIButton = {
+    private let postButtonTwo: UIButton = {
         let button = UIButton()
         button.setTitle("Go to post second", for: .normal)
         button.backgroundColor = .systemMint
@@ -36,10 +37,22 @@ final class FeedView: UIView {
         return stackView
     }()
     
-    init() {
+    // Один способ передачи данных для нажатия на кнопку, .addTarget не в замыкании
+    func pushVCAddTarget(target: Any?, action: Selector) {
+        postButtonTwo.addTarget(target, action: action, for: .touchUpInside)
+    }
+    
+    // Для .addTarget в замыкании
+    @objc private var actionButton: ()->()
+    private var target: UIViewController
+    
+    init(target: UIViewController, actionButton: @escaping ()-> Void) {
+        self.actionButton = actionButton
+        self.target = target
         super.init(frame: .zero)
         setFeedView()
     }
+    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -67,3 +80,5 @@ extension FeedView {
         ])
     }
 }
+
+

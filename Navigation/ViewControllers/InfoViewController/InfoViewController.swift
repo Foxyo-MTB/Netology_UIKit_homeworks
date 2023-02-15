@@ -15,7 +15,7 @@ final class InfoViewController: UIViewController {
         super.viewDidLoad()
         baseView.frame = view.bounds
         view.addSubview(baseView)
-        baseView.provideInfoButton().addTarget(self, action: #selector(pressButtonPressed), for: .touchUpInside)
+        baseView.pressButtonAddTarget(target: self, action: #selector(pressButtonPressed))
     }
 
     @objc private func pressButtonPressed() {
