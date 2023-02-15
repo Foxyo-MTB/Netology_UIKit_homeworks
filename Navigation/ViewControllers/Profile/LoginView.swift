@@ -89,7 +89,6 @@ extension LoginView {
         backgroundColor = .white
         
         addSubview(scrollView)
-        scrollView.backgroundColor = .brown
         scrollView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
             make.top.equalTo(self.safeAreaLayoutGuide.snp.top)
