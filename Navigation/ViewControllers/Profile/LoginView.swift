@@ -90,7 +90,8 @@ extension LoginView {
         
         addSubview(scrollView)
         scrollView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview()
+            make.leading.equalTo(self.safeAreaLayoutGuide.snp.leading)
+            make.trailing.equalTo(self.safeAreaLayoutGuide.snp.trailing)
             make.top.equalTo(self.safeAreaLayoutGuide.snp.top)
             make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom)
         }

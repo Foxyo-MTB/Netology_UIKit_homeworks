@@ -123,7 +123,8 @@ extension ProfileHeaderView {
         backgroundView.addSubview(statusButton)
         statusButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.width.equalToSuperview().offset(-32)
+            make.leading.equalTo(self.safeAreaLayoutGuide.snp.leading).offset(16)
+            make.trailing.equalTo(self.safeAreaLayoutGuide.snp.trailing).offset(-16)
             make.top.equalTo(profilePhoto.snp.bottom).offset(30)
             make.height.equalTo(50)
         }
@@ -138,9 +139,9 @@ extension ProfileHeaderView {
         backgroundView.addSubview(statusTextField)
         statusTextField.snp.makeConstraints { make in
             make.top.equalTo(statusLabel.snp.bottom).offset(5)
-            make.left.equalTo(statusLabel.snp.left)
+            make.leading.equalTo(statusLabel.snp.leading)
             make.height.equalTo(40)
-            make.right.equalToSuperview().offset(-16)
+            make.trailing.equalTo(statusButton.snp.trailing)
         }
         
         addSubview(newButton)
