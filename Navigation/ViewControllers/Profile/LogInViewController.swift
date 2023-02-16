@@ -16,7 +16,6 @@ final class LogInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupToHideKeyboardOnTapOnView()
-        baseView.frame = view.bounds
         view.addSubview(baseView)
         navigationController?.navigationBar.isHidden = true
         baseView.pushVCAddTarget(target: self, action: #selector(logInButtonPressed))
@@ -24,6 +23,11 @@ final class LogInViewController: UIViewController {
     
     @objc private func logInButtonPressed() {
         navigationController?.pushViewController(ProfileViewController(), animated: true)
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        baseView.frame = view.bounds
     }
     
     override func viewWillAppear(_ animated: Bool) {

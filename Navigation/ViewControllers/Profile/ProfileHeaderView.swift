@@ -43,7 +43,7 @@ final class ProfileHeaderView: UIView {
         button.backgroundColor = .systemBlue
         button.setTitle("Show status", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.layer.cornerRadius = 12                              // В задании указано 4pt, но оно ваще ни разу не 4 =) указал 12
+        button.layer.cornerRadius = 12                        
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowRadius = 4
         button.layer.shadowOpacity = 0.7

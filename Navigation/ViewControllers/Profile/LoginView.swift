@@ -45,7 +45,7 @@ final class LoginView: UIView {
     
     private let loginButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = ColorSet.bluePixel // С макетом какая-то беда, я цвет просто взял нужный
+        button.backgroundColor = ColorSet.bluePixel
         button.setTitle("Log in", for: .normal)
         button.tintColor = .white
         button.layer.cornerRadius = 10

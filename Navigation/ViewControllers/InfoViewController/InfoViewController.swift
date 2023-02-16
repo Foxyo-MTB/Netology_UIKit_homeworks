@@ -13,9 +13,13 @@ final class InfoViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        baseView.frame = view.bounds
         view.addSubview(baseView)
         baseView.pressButtonAddTarget(target: self, action: #selector(pressButtonPressed))
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        baseView.frame = view.bounds
     }
 
     @objc private func pressButtonPressed() {
