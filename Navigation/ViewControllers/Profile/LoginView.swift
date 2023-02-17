@@ -12,6 +12,7 @@ final class LoginView: UIView {
     
     private(set) var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
+        scrollView.showsVerticalScrollIndicator = false
         return scrollView
     }()
   
