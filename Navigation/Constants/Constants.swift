@@ -20,6 +20,14 @@ enum Images {
     
     static let logo = UIImage(named: "logo")
     
+    static let parrotOne = UIImage(named: "Parrot1")
+    
+    static let parrotTwo = UIImage(named: "Parrot2")
+    
+    static let parrotThree = UIImage(named: "Parrot3")
+    
+    static let parrotFour = UIImage(named: "Parrot4")
+    
 }
 
 enum ColorSet {
@@ -36,4 +44,14 @@ enum Fonts {
     
 }
 
+enum Posts {
+    
+    static let postArray: [PostModel] = [
+        PostModel(author: "Vladimir Beliakov", description: "Gray parrot.", image: Images.parrotOne!, likes: 500, views: 400),
+        PostModel(author: "Vladimir Beliakov", description: "Green parrot with red beak.", image: Images.parrotTwo!, likes: 250, views: 300),
+        PostModel(author: "Vladimir Beliakov", description: "Another green parrot.", image: Images.parrotThree!, likes: 245, views: 250),
+        PostModel(author: "Vladimir Beliakov", description: "Yellow parrot with blue wings.", image: Images.parrotFour!, likes: 500, views: 600)
+    ]
+    
+}
 

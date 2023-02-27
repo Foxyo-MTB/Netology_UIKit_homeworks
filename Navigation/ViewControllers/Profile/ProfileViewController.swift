@@ -9,22 +9,16 @@ import UIKit
 
 final class ProfileViewController: UIViewController {
     
-    private let baseView = ProfileHeaderView()
+    private let baseView = ProfileView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(baseView)
-        navigationItem.title = "Profile"
         navigationController?.navigationBar.isHidden = false
-        baseView.statusButtonAddTarget(target: self, action: #selector(statusButtonPressed))
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         baseView.frame = view.bounds
-    }
-        
-    @objc private func statusButtonPressed() {
-        baseView.statusLabel.text = baseView.statusTextField.text
     }
 }
