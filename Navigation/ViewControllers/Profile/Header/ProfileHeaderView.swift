@@ -18,7 +18,6 @@ final class ProfileHeaderView: UIView {
         imageView.layer.borderColor = UIColor.white.cgColor
         imageView.layer.cornerRadius = 50
         imageView.contentMode = .scaleAspectFill
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
@@ -27,7 +26,6 @@ final class ProfileHeaderView: UIView {
         label.text = "Cool parrot"
         label.font = .systemFont(ofSize: 18, weight: .bold)
         label.textColor = .black
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -47,7 +45,6 @@ final class ProfileHeaderView: UIView {
     private(set) var statusLabel: UILabel = {
         let label = UILabel()
         label.text = "Тут установлен статус"
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -60,7 +57,6 @@ final class ProfileHeaderView: UIView {
         textField.layer.borderColor = UIColor.black.cgColor
         textField.font = .systemFont(ofSize: 15, weight: .regular)
         textField.textColor = .black
-        textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
     
