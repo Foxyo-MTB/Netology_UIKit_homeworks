@@ -15,14 +15,14 @@ final class LoginView: UIView {
         scrollView.showsVerticalScrollIndicator = false
         return scrollView
     }()
-  
+    
     private let logoView: UIImageView = {
         let view = UIImageView()
         view.image = Images.logo
         return view
     }()
     
-    private let loginTextField: TextFieldWithPadding = {
+    private(set) var loginTextField: TextFieldWithPadding = {
         let textField = TextFieldWithPadding()
         textField.backgroundColor = .systemGray6
         textField.layer.borderColor = UIColor.lightGray.cgColor
@@ -34,7 +34,7 @@ final class LoginView: UIView {
         return textField
     }()
     
-    private let passwordTextField: TextFieldWithPadding = {
+    private(set) var passwordTextField: TextFieldWithPadding = {
         let textField = TextFieldWithPadding()
         textField.backgroundColor = .systemGray6
         textField.layer.borderColor = UIColor.lightGray.cgColor
@@ -53,6 +53,14 @@ final class LoginView: UIView {
         return button
     }()
     
+    private let incorrectPasswordLengthLabel: UILabel = {
+        let label = UILabel()
+        label.isHidden = true
+        label.textAlignment = .center
+        label.text = "Пароль должен быть больше 5 символов"
+        return label
+    }()
+    
     func checkLoginButtonStates() {
         switch loginButton.state {
         case .normal: loginButton.alpha = 1
@@ -64,8 +72,32 @@ final class LoginView: UIView {
         }
     }
     
+    func shakeAnimationForTextField(textField: UITextField) {
+        let animation = CABasicAnimation(keyPath: "position")
+        animation.duration = 0.07
+        animation.repeatCount = 4
+        animation.autoreverses = true
+        animation.fromValue = NSValue(cgPoint: CGPoint(x: textField.center.x - 10, y: textField.center.y))
+        animation.toValue = NSValue(cgPoint: CGPoint(x: textField.center.x + 10, y: textField.center.y))
+        textField.layer.add(animation, forKey: "position")
+    }
+    
     func pushVCAddTarget(target: Any?, action: Selector) {
         loginButton.addTarget(target, action: action, for: .touchUpInside)
+    }
+    
+    func checkPasswordLengthAndDisplayWarning() -> Bool {
+        let passwordLenght = passwordTextField.text!.count
+        if passwordLenght > 5 {
+            return true
+        } else {
+            print("Password less than 5 letters")
+            incorrectPasswordLengthLabel.isHidden = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                self.incorrectPasswordLengthLabel.isHidden = true
+            }
+            return false
+        }
     }
     
     init() {
@@ -96,23 +128,23 @@ extension LoginView {
             make.top.equalTo(self.safeAreaLayoutGuide.snp.top)
             make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom)
         }
-    
+        
         scrollView.addSubview(logoView)
         logoView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(120)
             make.width.height.equalTo(100)
             make.centerX.equalToSuperview()
         }
-
+        
         scrollView.addSubview(loginTextField)
         loginTextField.snp.makeConstraints { make in
             make.width.equalToSuperview().offset(-32)
             make.centerX.equalToSuperview()
             make.height.equalTo(50)
             make.top.equalTo(logoView.snp.bottom).offset(120)
-
+            
         }
-
+        
         scrollView.addSubview(passwordTextField)
         passwordTextField.snp.makeConstraints { make in
             make.top.equalTo(loginTextField.snp.bottom).offset(-0.5)
@@ -120,10 +152,18 @@ extension LoginView {
             make.centerX.equalToSuperview()
             make.height.equalTo(50)
         }
-
+        
+        scrollView.addSubview(incorrectPasswordLengthLabel)
+        incorrectPasswordLengthLabel.snp.makeConstraints { make in
+            make.top.equalTo(passwordTextField.snp.bottom).offset(16)
+            make.width.equalToSuperview().offset(-32)
+            make.centerX.equalToSuperview()
+            make.height.equalTo(50)
+        }
+        
         scrollView.addSubview(loginButton)
         loginButton.snp.makeConstraints { make in
-            make.top.equalTo(passwordTextField.snp.bottom).offset(16)
+            make.top.equalTo(incorrectPasswordLengthLabel.snp.bottom).offset(16)
             make.centerX.equalToSuperview()
             make.width.equalToSuperview().offset(-32)
             make.height.equalTo(50)

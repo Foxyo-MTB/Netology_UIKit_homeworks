@@ -64,8 +64,24 @@ final class ProfileHeaderView: UIView {
         statusButton.addTarget(self, action: #selector(statusButtonPressed), for: .touchUpInside)
     }
     
+    private func shakeAnimationForStatusTextField() {
+        let animation = CABasicAnimation(keyPath: "position")
+        animation.duration = 0.07
+        animation.repeatCount = 4
+        animation.autoreverses = true
+        animation.fromValue = NSValue(cgPoint: CGPoint(x: statusTextField.center.x - 10, y: statusTextField.center.y))
+        animation.toValue = NSValue(cgPoint: CGPoint(x: statusTextField.center.x + 10, y: statusTextField.center.y))
+
+        statusTextField.layer.add(animation, forKey: "position")
+    }
+    
     @objc private func statusButtonPressed() {
-        statusLabel.text = statusTextField.text
+        if statusTextField.text!.isEmpty {
+            shakeAnimationForStatusTextField()
+        } else {
+            statusLabel.text = statusTextField.text
+            statusTextField.text = ""
+        }
     }
     
     override init(frame: CGRect) {

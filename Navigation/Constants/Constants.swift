@@ -7,6 +7,13 @@
 
 import UIKit
 
+enum Credentials {
+    
+    static let login = "Login"
+    
+    static let password = "Password"
+}
+
 enum TabBarPictures {
     
     static let profileImage = UIImage(systemName: "person.crop.circle")
