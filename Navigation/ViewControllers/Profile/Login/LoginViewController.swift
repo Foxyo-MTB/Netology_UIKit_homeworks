@@ -43,10 +43,11 @@ final class LoginViewController: UIViewController {
     private func checkCredentials() {
         if (baseView.loginTextField.text?.isEmpty != true &&
             baseView.loginTextField.text != Credentials.login &&
-            isValidEmail(baseView.loginTextField.text!) == true) &&
+            isValidEmail(baseView.loginTextField.text!) != true) ||
             (baseView.passwordTextField.text?.isEmpty != true &&
-             baseView.loginTextField.text != Credentials.password &&
-             baseView.checkPasswordLengthAndDisplayWarning()) {
+             baseView.passwordTextField.text != Credentials.password &&
+             baseView.checkPasswordLengthAndDisplayWarning())
+        {
             let alert = UIAlertController(title: "Неправильный логин или пароль", message: nil, preferredStyle: .alert)
             let cancelAction = UIAlertAction(title: "Понятно!", style: .default)
             alert.addAction(cancelAction)

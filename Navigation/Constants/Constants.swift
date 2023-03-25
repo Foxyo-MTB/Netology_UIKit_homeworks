@@ -9,7 +9,7 @@ import UIKit
 
 enum Credentials {
     
-    static let login = "Login"
+    static let login = "email@yandex.ru"
     
     static let password = "Password"
 }
