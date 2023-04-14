@@ -15,6 +15,8 @@ final class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        baseView.loginTextField.text = "email@yandex.ru"
+        baseView.passwordTextField.text = "Password"
         setupToHideKeyboardOnTapOnView()
         view.addSubview(baseView)
         navigationController?.navigationBar.isHidden = true
