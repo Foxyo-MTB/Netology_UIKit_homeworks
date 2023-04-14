@@ -11,8 +11,8 @@ struct PostModel {
     
     let author: String
     let description: String
-    let image: UIImage // Не понял, почему в задании image у нас типа String, я сделал его UIImage
-    let likes: Int
-    let views: Int
+    let image: UIImage
+    var likes: Int
+    var views: Int
 }
 

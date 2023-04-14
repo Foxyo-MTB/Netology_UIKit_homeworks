@@ -68,6 +68,29 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return UITableView.automaticDimension
     }
+    
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        if var localModel: PostModel = model[indexPath.section][indexPath.row] as? PostModel {
+//            let detailVC = DetailViewController()
+//            localModel.views += 1
+//            detailVC.viewsLabel.text = "Views: \(localModel.views)"
+//            detailVC.likesLabel.text = "Likes: \(localModel.likes)"
+//            detailVC.detailImageView.image = localModel.image
+//            detailVC.descriptionLabel.text = localModel.description
+//            detailVC.titleLabel.text = localModel.author
+//            navigationController?.pushViewController(detailVC, animated: true)
+//        }
+//    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let post = model[indexPath.section][indexPath.row] as? PostModel else { return }
+        let cell = tableView.cellForRow(at: indexPath) as! PostTableViewCell
+        let detailVС = DetailViewController(post: post) { count in
+            cell.viewsCount! += count
+        }
+        present(detailVС, animated: true)
+    }
+    
 }
 
 extension ProfileViewController {

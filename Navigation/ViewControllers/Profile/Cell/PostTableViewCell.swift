@@ -10,6 +10,18 @@ import SnapKit
 
 class PostTableViewCell: UITableViewCell {
     
+    var viewsCount: Int? {
+        didSet {
+            viewsLabel.text = "Views: \(viewsCount ?? 0 )"
+        }
+    }
+
+    var likesCount: Int? {
+        didSet {
+            likesLabel.text = "Likes: \(likesCount ?? 0 )"
+        }
+    }
+    
     let contentWhiteView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -62,6 +74,8 @@ class PostTableViewCell: UITableViewCell {
         postTextLabel.text = data.description
         likesLabel.text = "Likes: \(data.likes)"
         viewsLabel.text = "Views: \(data.views)"
+        viewsCount = data.views
+        likesCount = data.likes
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
