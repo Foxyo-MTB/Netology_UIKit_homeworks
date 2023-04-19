@@ -44,7 +44,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         model.count
     }
-        
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         switch indexPath.section {
@@ -69,19 +69,6 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         return UITableView.automaticDimension
     }
     
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        if var localModel: PostModel = model[indexPath.section][indexPath.row] as? PostModel {
-//            let detailVC = DetailViewController()
-//            localModel.views += 1
-//            detailVC.viewsLabel.text = "Views: \(localModel.views)"
-//            detailVC.likesLabel.text = "Likes: \(localModel.likes)"
-//            detailVC.detailImageView.image = localModel.image
-//            detailVC.descriptionLabel.text = localModel.description
-//            detailVC.titleLabel.text = localModel.author
-//            navigationController?.pushViewController(detailVC, animated: true)
-//        }
-//    }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let post = model[indexPath.section][indexPath.row] as? PostModel else { return }
         let cell = tableView.cellForRow(at: indexPath) as! PostTableViewCell
@@ -91,6 +78,21 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         present(detailVС, animated: true)
     }
     
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        switch indexPath.section {
+        case 0:
+            return nil
+        default:
+            let itemForDeletion = UIContextualAction(style: .destructive, title: "Удалить") { _, _, _ in
+                print("Cell deleted")
+                Posts.postArray.remove(at: indexPath.row)
+                self.model = [["Images"], Posts.postArray]
+                tableView.reloadData()
+            }
+            let swipeActions = UISwipeActionsConfiguration(actions: [itemForDeletion])
+            return swipeActions
+        }
+    }
 }
 
 extension ProfileViewController {

@@ -53,44 +53,42 @@ enum Fonts {
 
 enum Posts {
     
-    static let postArray: [PostModel] = [
+    static var postArray: [PostModel] = [
         PostModel(author: "Vladimir Beliakov", description: "Gray parrot.", image: Images.parrotOne!, likes: 500, views: 400),
         PostModel(author: "Vladimir Beliakov", description: "Green parrot with red beak.", image: Images.parrotTwo!, likes: 250, views: 300),
         PostModel(author: "Vladimir Beliakov", description: "Another green parrot.", image: Images.parrotThree!, likes: 245, views: 250),
         PostModel(author: "Vladimir Beliakov", description: "Yellow parrot with blue wings.", image: Images.parrotFour!, likes: 500, views: 600)
     ]
-    
 }
 
-struct Source {
-    
-    static func makeGallery() -> [Gallery] {
-        [
-            .init(id: 1, imageName: "gallery01"),
-            .init(id: 2, imageName: "gallery02"),
-            .init(id: 3, imageName: "gallery03"),
-            .init(id: 4, imageName: "gallery04"),
-            .init(id: 5, imageName: "gallery05"),
-            .init(id: 6, imageName: "gallery06"),
-            .init(id: 7, imageName: "gallery07"),
-            .init(id: 8, imageName: "gallery08"),
-            .init(id: 9, imageName: "gallery09"),
-            .init(id: 10, imageName: "gallery10"),
-            .init(id: 11, imageName: "gallery11"),
-            .init(id: 12, imageName: "gallery12"),
-            .init(id: 13, imageName: "gallery13"),
-            .init(id: 14, imageName: "gallery14"),
-            .init(id: 15, imageName: "gallery15"),
-            .init(id: 16, imageName: "gallery16"),
-            .init(id: 17, imageName: "gallery17"),
-            .init(id: 18, imageName: "gallery18"),
-            .init(id: 19, imageName: "gallery19"),
-            .init(id: 20, imageName: "gallery20")
-        ]
-    }
+struct PhotoGallery {
+    var image: String
 
-    static func randomPhotos(with count: Int) -> [Gallery] {
-        return (0..<count).map { _ in makeGallery().randomElement()! }
+    static func setupImage() -> [PhotoGallery] {
+        var image = [PhotoGallery]()
+
+        image.append(PhotoGallery(image: "gallery01"))
+        image.append(PhotoGallery(image: "gallery02"))
+        image.append(PhotoGallery(image: "gallery03"))
+        image.append(PhotoGallery(image: "gallery04"))
+        image.append(PhotoGallery(image: "gallery05"))
+        image.append(PhotoGallery(image: "gallery06"))
+        image.append(PhotoGallery(image: "gallery07"))
+        image.append(PhotoGallery(image: "gallery08"))
+        image.append(PhotoGallery(image: "gallery09"))
+        image.append(PhotoGallery(image: "gallery10"))
+        image.append(PhotoGallery(image: "gallery11"))
+        image.append(PhotoGallery(image: "gallery12"))
+        image.append(PhotoGallery(image: "gallery13"))
+        image.append(PhotoGallery(image: "gallery14"))
+        image.append(PhotoGallery(image: "gallery15"))
+        image.append(PhotoGallery(image: "gallery16"))
+        image.append(PhotoGallery(image: "gallery17"))
+        image.append(PhotoGallery(image: "gallery18"))
+        image.append(PhotoGallery(image: "gallery19"))
+        image.append(PhotoGallery(image: "gallery20"))
+
+        return image
     }
 }
 

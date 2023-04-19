@@ -17,7 +17,6 @@ final class DetailView: UIView {
 
     private let contentView: UIView = {
         let contentView = UIView()
-        contentView.backgroundColor = .white
         contentView.translatesAutoresizingMaskIntoConstraints = false
         return contentView
     }()
@@ -26,8 +25,6 @@ final class DetailView: UIView {
         let image = UIImageView()
         image.contentMode = .scaleAspectFill
         image.layer.masksToBounds = true
-        image.layer.borderWidth = 0.5
-        image.layer.borderColor = UIColor.black.cgColor
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
